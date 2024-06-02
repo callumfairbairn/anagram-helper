@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import './App.css'
-import { Input } from './components/ui/input'
+import { Input, UnderlineInput } from './components/ui/input'
 import { Button } from './components/ui/button';
 import { ShuffleIcon } from 'lucide-react';
 
@@ -9,7 +9,8 @@ const boxDim = 27
 
 function App() {
   const [input, setInput] = useState<string[]>([]);
-  const radius = getRadius(input.length)
+  const inputLength = input.length
+  const radius = getRadius(inputLength)
 
   return (
     <div className='flex flex-col items-center'>
@@ -23,12 +24,15 @@ function App() {
           {input.map((char, i) =>
             <div
               key={`${i}-${char}`}
-              className={`absolute border text-xl`}
-              style={{ width: `${boxDim}px`, height: `${boxDim}px`, ...getTransform(input.length, i, radius) }}
+              className={`absolute border text-xl rounded-md`}
+              style={{ width: `${boxDim}px`, height: `${boxDim}px`, ...getTransform(inputLength, i, radius) }}
             >
               {char}
             </div>
           )}
+        </div>
+        <div className='flex gap-1' style={{ paddingTop: radius + 16 }}>
+          {input.map((_, i) => <UnderlineInput key={i} className='max-w-10' />)}
         </div>
       </div>
     </div>

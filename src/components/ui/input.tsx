@@ -22,4 +22,39 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
 )
 Input.displayName = "Input"
 
-export { Input }
+const UnderlineInput = React.forwardRef<HTMLInputElement, InputProps>(
+  ({ className, type, ...props }, ref) => {
+    const [value, setValue] = React.useState('')
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      e.preventDefault()
+      if (e.target.value.length < 2) {
+        setValue(e.target.value)
+      }
+    }
+
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+      e.preventDefault()
+      if (e.key) {
+
+      }
+    }
+
+    return (
+      <input
+        value={value}
+        onChange={handleChange}
+        type={type}
+        className={cn(
+          "flex h-10 w-full border-b-2 uppercase border-slate-900 bg-white px-3 py-2 text-lg ring-offset-white file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-slate-500 focus-visible:outline-none focus-visible:ring- focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 dark:border-slate-800 dark:bg-slate-950 dark:ring-offset-slate-950 dark:placeholder:text-slate-400 dark:focus-visible:ring-slate-300",
+          className
+        )}
+        ref={ref}
+        {...props}
+      />
+    )
+  }
+)
+UnderlineInput.displayName = "UnderlineInput"
+
+export { Input, UnderlineInput }
