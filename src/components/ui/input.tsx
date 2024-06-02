@@ -33,13 +33,6 @@ const UnderlineInput = React.forwardRef<HTMLInputElement, InputProps>(
       }
     }
 
-    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-      e.preventDefault()
-      if (e.key) {
-
-      }
-    }
-
     return (
       <input
         value={value}
